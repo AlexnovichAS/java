@@ -2,7 +2,6 @@ public abstract class Sweets {
     protected String name;
     protected int weight;
     protected int price;
-    protected String uniqueName;
 
     public String getName() {
         return name;
@@ -26,18 +25,5 @@ public abstract class Sweets {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public String getUniqueName() {
-        return uniqueName;
-    }
-
-    public void setUniqueName(String uniqueName) {
-        this.uniqueName = uniqueName;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s,%s,Вес %d гр.,Цена %d руб.",name,uniqueName,weight,price);
     }
 }
