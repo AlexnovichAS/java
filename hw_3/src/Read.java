@@ -2,6 +2,7 @@ import java.io.*;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Read {
 
@@ -21,11 +22,12 @@ public class Read {
     }
 
     public void readFile(String stringPath) {
-        Pattern p = Pattern.compile("\\s*(\\s|,|:|;|-|!|\\?|\\.)\\s*");
+        Pattern p = Pattern.compile("[^a-z0-9A-ZА-Яа-яЁё]");
         try (BufferedReader writer = new BufferedReader(new FileReader(String.valueOf(Path.of(stringPath).toAbsolutePath())))) {
             while (writer.ready()) {
                 String line = writer.readLine();
                 resultWords.addAll(Arrays.asList(p.split(line.trim().toLowerCase())));
+                resultWords = resultWords.stream().filter(x -> !x.equals("")).collect(Collectors.toList());
             }
             resultWords.forEach(System.out::println);
         } catch (NullPointerException | FileNotFoundException e) {
